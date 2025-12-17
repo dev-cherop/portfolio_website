@@ -1,0 +1,36 @@
+# ----------------
+# Python / Django
+# ----------------
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+env/
+venv/
+*.env
+media/
+
+# Django migrations (optional if you want to ignore migrations)
+*/migrations/*.pyc
+*/migrations/__pycache__/
+
+# ----------------
+# Node / React / Vite
+# ----------------
+node_modules/
+dist/
+npm-debug.log*
+yarn-error.log*
+
+# ----------------
+# IDE / Editor
+# ----------------
+.vscode/
+.idea/
+*.swp
+
+# ----------------
+# Mac / Linux / Windows system files
+# ----------------
+.DS_Store
+Thumbs.db

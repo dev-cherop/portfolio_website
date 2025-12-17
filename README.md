@@ -13,18 +13,13 @@ A full-stack portfolio project with Django backend (REST API) and React frontend
 
 ## Project Structure
 
-portfolio-dashboard/
+portfolio/
 ├─ backend/ # Django backend
 ├─ frontend/ # React frontend
 ├─ .gitignore
 ├─ README.md
 
-bash
-Copy code
-
 ## Backend Setup
-
-```bash
 cd backend
 python -m venv env
 source env/bin/activate       # Windows: env\Scripts\activate
@@ -35,8 +30,6 @@ python manage.py runserver
 API base URL: http://localhost:8000/api/
 
 Frontend Setup
-bash
-Copy code
 cd frontend
 npm install
 npm run dev

@@ -16,8 +16,11 @@ A full-stack portfolio project with Django backend (REST API) and React frontend
 portfolio/
 
 ├─ backend/ # Django backend
+
 ├─ frontend/ # React frontend
+
 ├─ .gitignore
+
 ├─ README.md
 
 ## Backend Setup

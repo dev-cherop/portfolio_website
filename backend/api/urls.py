@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import ProjectViewSet, ContactViewSet
+from .views import ProjectViewSet, ContactViewSet,create_admin_once
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -13,6 +13,7 @@ router.register(r"contacts", ContactViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),
+    path("create-admin/", create_admin_once),
 
 
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

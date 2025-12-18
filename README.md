@@ -6,7 +6,6 @@ A full-stack portfolio project with Django backend (REST API) and React frontend
 
 - Admin login with JWT
 - CRUD for Projects & Contacts
-- Filter projects by tech stack
 - Responsive design with Tailwind
 - React frontend with React Router
 - Django REST Framework backend

@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-fl+swb%_v*jgpc161sx)n$^=txwri*^+i4w8ih_s(%d$%ymn-*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =False
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
+ALLOWED_HOSTS = ["https://portfolio-backend-d55c.onrender.com", "localhost"]
+
 # Application definition
 
 INSTALLED_APPS = [

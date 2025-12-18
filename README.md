@@ -23,6 +23,8 @@ portfolio/
 
 ├─ README.md
 
+##SETUP
+
 ## Backend Setup
 
 cd backend
@@ -41,7 +43,7 @@ python manage.py runserver
 
 API base URL: http://localhost:8000/api/
 
-Frontend Setup
+##Frontend Setup
 
 cd frontend
 

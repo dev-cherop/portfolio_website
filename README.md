@@ -63,5 +63,7 @@ npm run dev
 http://localhost:5173 (Vite default)
 ## 🔐 Admin Access
 Visit /admin on the frontend
+
 Log in using the Django superuser credentials
+
 Manage projects and contacts from the dashboard

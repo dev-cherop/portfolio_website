@@ -23,8 +23,9 @@ portfolio/
 
 ├─ README.md
 
-##SETUP
-
+## SETUP
+On you terminal run:
+git clone https://github.com/dev-cherop/portfolio_website.git
 ## Backend Setup
 
 cd backend

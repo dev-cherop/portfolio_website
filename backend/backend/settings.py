@@ -8,7 +8,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-fl+swb%_v*jgpc161sx)n$^=txwri*^+i4w8ih_s(%d$%ymn-*'
 DEBUG = False
-ALLOWED_HOSTS = ["portfolio-backend-5c4o.onrender.com"]
+
+ALLOWED_HOSTS = [
+    "portfolio-backend-5c4o.onrender.com",
+    "localhost",
+    "127.0.0.1"
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -66,9 +71,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database (SQLite for now, can replace with Postgres later)
+
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')  # Use Render's environment variable
+        default='sqlite:///db.sqlite3',
+        conn_max_age=600,
+        ssl_require=True
     )
 }
 

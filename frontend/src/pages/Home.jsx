@@ -1,105 +1,81 @@
 import React from "react";
-import {FaPython,FaReact,FaDatabase,FaDocker,FaLinux,FaNetworkWired,FaHtml5,FaCss3Alt,FaJs,
-} from "react-icons/fa";
-import {SiTailwindcss,SiTensorflow,SiScikitlearn,SiPostgresql,SiFirebase,SiGraphql,} from "react-icons/si";
+import { FaPython, FaReact, FaDatabase, FaDocker, FaLinux, FaNetworkWired } from "react-icons/fa";
+import { SiTensorflow, SiScikitlearn, SiPostgresql, SiFastapi, SiDjango, SiTailwindcss } from "react-icons/si";
 
 const SKILLS = [
-  { icon: FaPython, label: "Python", color: "text-yellow-500" },
-  { icon: FaReact, label: "React", color: "text-blue-500" },
-  { icon: FaDatabase, label: "Django / Flask / DB", color: "text-green-600" },
-  { icon: FaDocker, label: "Docker", color: "text-blue-400" },
-  { icon: FaLinux, label: "Linux / Git", color: "text-gray-800" },
-  { icon: FaNetworkWired, label: "Networking / CCNAv7 / Huawei Datacom", color: "text-purple-500" },
-  { icon: FaHtml5, label: "HTML", color: "text-orange-500" },
-  { icon: FaCss3Alt, label: "CSS", color: "text-blue-600" },
-  { icon: FaJs, label: "JavaScript", color: "text-yellow-400" },
-  { icon: SiTailwindcss, label: "Bootstrap / Tailwind CSS", color: "text-teal-400" },
-  { icon: SiTensorflow, label: "TensorFlow", color: "text-orange-600" },
-  { icon: SiScikitlearn, label: "Scikit-learn / Pandas / NumPy", color: "text-green-400" },
-  { icon: SiPostgresql, label: "PostgreSQL", color: "text-blue-700" },
-  { icon: SiFirebase, label: "Backend Services", color: "text-yellow-500" },
-  { icon: SiGraphql, label: "FAST / REST APIs", color: "text-pink-500" },
+  { icon: FaPython, label: "Python" },
+  { icon: SiDjango, label: "Django" },
+  { icon: SiFastapi, label: "FastAPI / REST" },
+  { icon: FaReact, label: "React" },
+  { icon: SiPostgresql, label: "PostgreSQL" },
+  { icon: FaDocker, label: "Docker" },
+  { icon: FaNetworkWired, label: "CCNA / Networking" },
+  { icon: SiTensorflow, label: "TensorFlow" },
+  { icon: SiScikitlearn, label: "Scikit-learn" },
+  { icon: FaLinux, label: "Linux / CLI" },
+  { icon: SiTailwindcss, label: "Tailwind CSS" },
 ];
 
-const SkillCard = React.memo(({ icon: Icon, label, color }) => (
-  <div
-    className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/70 backdrop-blur shadow-sm
-               hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
-    aria-label={label}
-  >
-    <Icon className={`text-lg ${color}`} />
-    <span className="font-medium text-gray-700 text-sm sm:text-base">
-      {label}
-    </span>
+const SkillBadge = ({ icon: Icon, label }) => (
+  <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/80 backdrop-blur shadow-sm hover:shadow-md transition">
+    <Icon className="text-blue-600 text-xl" />
+    <span className="text-gray-800 font-medium">{label}</span>
   </div>
-));
+);
 
 export default function Home() {
   return (
-    <section className="max-w-6xl mx-auto px-4 py-12 flex flex-col sm:flex-row gap-10">
-      
-      {/* Profile Image */}
-      <div className="flex-shrink-0 text-center">
-        <div className="relative group w-32 sm:w-40 md:w-48 mx-auto">
-          <div
-            aria-hidden="true"
-            className="absolute -inset-1 rounded-full bg-gradient-to-r
-                       from-blue-500 to-purple-500 blur opacity-30
-                       group-hover:opacity-60 transition"
-          />
+    <section className="max-w-7xl mx-auto px-4 py-16 flex flex-col gap-16">
+
+      {/* Hero Section */}
+      <div className="flex flex-col md:flex-row gap-8">
+        {/* Image */}
+        <div className="flex-shrink-0 w-40 sm:w-48 md:w-56 relative mx-auto md:mx-0">
+          <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 blur opacity-30 transition" />
           <img
             src="/ely.png"
-            alt="Cherop Elisha profile photo"
-            loading="lazy"
-            className="relative rounded-full w-full h-full object-cover shadow-xl
-                       ring-4 ring-white group-hover:scale-105 transition-transform"
+            alt="Cherop Elisha"
+            className="relative w-full h-full rounded-full object-cover shadow-xl ring-4 ring-white"
           />
         </div>
 
-        <p className="mt-4 font-semibold text-gray-700 tracking-wide">
-          DEV-CHEROP
-        </p>
-      </div>
-
-      {/* Content */}
-      <div className="flex-1 space-y-6">
-        <header>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
-            Hi, I’m{" "}
-            <span className="inline-block border-r-2 border-blue-600 pr-1 animate-typing">
-              CHEROP ELISHA
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-              Full-Stack & Systems Engineer
-            </span>
+        {/* Intro & About */}
+        <div className="flex-1 flex flex-col justify-center space-y-4 text-center md:text-left">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900">
+            Hi, I’m <span className="text-blue-600">CHEROP ELISHA</span>
           </h1>
-        </header>
-
-        <p className="text-gray-700 text-base sm:text-lg">
-          I design and build scalable web applications, analyze data,
-          and solve complex IT challenges using modern technologies.
-        </p>
-
-        <p className="text-gray-600 text-sm sm:text-base">
-          A detail-oriented Computer Science graduate with hands-on experience
-          in backend & frontend development, IT support, and machine learning.
-          I’m passionate about creating efficient, user-friendly systems.
-        </p>
-
-        {/* Skills */}
-        <section aria-labelledby="skills-heading">
-          <h2 id="skills-heading" className="sr-only">
-            Technical Skills
-          </h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-            {SKILLS.map((skill) => (
-              <SkillCard key={skill.label} {...skill} />
-            ))}
-          </div>
-        </section>
+          <p className="text-lg sm:text-xl text-gray-700">
+            Resourceful Full-Stack & Systems Engineer specializing in backend and frontend development, IT support, machine learning, and WordPress development. Skilled in Python, Django, Flask, React, FastAPI, WordPress, and CCNAv7-certified networking. I design and build scalable, data-driven systems, deliver production-ready features, and solve complex technical challenges with clean, maintainable software.
+          </p>
+          <h2 className="text-2xl font-bold text-gray-900 mt-4">About My Work</h2>
+          <p className="text-gray-700">
+            I am passionate about creating scalable, data-driven systems and delivering high-quality, maintainable software. With a dual background in Software Engineering and Network Infrastructure, I approach problems with a systems-level perspective, ensuring robust and efficient solutions across software, WordPress sites, and network systems.
+          </p>
+        </div>
       </div>
+
+      {/* Skills / Technical Expertise */}
+      <div>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Technical Expertise</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+          {SKILLS.map((skill) => (
+            <SkillBadge key={skill.label} {...skill} />
+          ))}
+        </div>
+      </div>
+
+      {/* Key Competencies */}
+      <div>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Key Competencies</h2>
+        <ul className="list-disc list-inside text-gray-700 space-y-1">
+          <li>Backend Development (Django, Flask, FastAPI)</li>
+          <li>Frontend Implementation (React, Tailwind)</li>
+          <li>Network Infrastructure (Routing & Switching)</li>
+          <li>Machine Learning (TensorFlow, Scikit-learn)</li>
+          <li>DevOps (Docker, Git, Linux CLI)</li>
+        </ul>
+      </div>
+
     </section>
   );
 }

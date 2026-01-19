@@ -4,6 +4,7 @@ import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import Footer from "./components/Footer";
 
+
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -30,7 +31,7 @@ function App() {
     },
     {
       name: "Email",
-      href: "mailto:cheropelisha1@gmail.com",
+      href: "mailto:cheropelishaa@gmail.com",
       icon: FaEnvelope,
     },
   ];
@@ -66,7 +67,7 @@ function App() {
   {/* Right: Navigation Links */}
   <ul className="flex gap-4">
     <li><Link to="/">Home</Link></li>
-    <li><Link to="/projects">Projects</Link></li>
+    <li><Link to="/projects">Projects</Link></li> 
     <li><Link to="/contact">Contact</Link></li>
     
   </ul>

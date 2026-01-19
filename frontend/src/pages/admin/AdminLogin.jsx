@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
-import API from "../../services/api";
 import { useAuth } from "../../context/AuthContext";
+// import API from "../../services/api"; ❌ backend ignored
 
 export default function AdminLogin() {
   const [username, setUsername] = useState("");
@@ -22,15 +22,16 @@ export default function AdminLogin() {
     setLoading(true);
     setError("");
 
-    try {
-      const res = await API.post("/api/token/", { username, password });
-      login(res.data.access);
-      navigate("/admin/projects", { replace: true });
-    } catch {
-      setError("Invalid username or password");
-    } finally {
+    // ✅ FRONTEND-ONLY AUTH (temporary)
+    setTimeout(() => {
+      if (username === "admin" && password === "admin123") {
+        login("frontend-admin-token"); // fake token
+        navigate("/admin/projects", { replace: true });
+      } else {
+        setError("Invalid username or password");
+      }
       setLoading(false);
-    }
+    }, 600);
   };
 
   return (
@@ -38,7 +39,9 @@ export default function AdminLogin() {
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold text-center mb-6">Admin Login</h2>
 
-        {error && <p className="text-red-600 text-center mb-4">{error}</p>}
+        {error && (
+          <p className="text-red-600 text-center mb-4">{error}</p>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
@@ -66,6 +69,12 @@ export default function AdminLogin() {
             {loading ? "Logging in..." : "Login"}
           </button>
         </form>
+
+        {/* TEMP CREDS */}
+        <p className="text-xs text-gray-400 text-center mt-4">
+          only cherop allowed
+          
+        </p>
       </div>
     </div>
   );

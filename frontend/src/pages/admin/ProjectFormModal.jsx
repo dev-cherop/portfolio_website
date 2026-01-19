@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import API from "../../services/api";
+// import API from "../../services/api"; // ❌ not used (frontend-only)
 
 export default function ProjectFormModal({
   isOpen,
@@ -46,7 +46,8 @@ export default function ProjectFormModal({
 
   if (!isOpen) return null;
 
-  const handleSubmit = async (e) => {
+  // ✅ FRONTEND ONLY: localStorage CRUD
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!title.trim() || !description.trim()) {
@@ -57,31 +58,49 @@ export default function ProjectFormModal({
     setLoading(true);
     setError("");
 
-    const payload = {
-      title: title.trim(),
-      description: description.trim(),
-      tech_stack: techStack.trim(),
-      github_link: githubLink.trim(),
-    };
-
     try {
+      const stored = JSON.parse(localStorage.getItem("projects")) || [];
+
       if (project) {
-        await API.put(`/projects/${project.id}/`, payload);
+        // EDIT
+        const updatedProjects = stored.map((p) =>
+          p.id === project.id
+            ? {
+                ...p,
+                title: title.trim(),
+                description: description.trim(),
+                tech_stack: techStack.trim(),
+                github_link: githubLink.trim(),
+              }
+            : p
+        );
+
+        localStorage.setItem(
+          "projects",
+          JSON.stringify(updatedProjects)
+        );
       } else {
-        await API.post("/projects/", payload);
+        // CREATE
+        const newProject = {
+          id: Date.now(),
+          title: title.trim(),
+          description: description.trim(),
+          tech_stack: techStack.trim(),
+          github_link: githubLink.trim(),
+          created_at: new Date().toISOString(),
+        };
+
+        localStorage.setItem(
+          "projects",
+          JSON.stringify([newProject, ...stored])
+        );
       }
 
       refresh();
       onClose();
     } catch (err) {
       console.error(err);
-
-      if (err.response?.status === 401) {
-        localStorage.removeItem("adminToken");
-        navigate("/admin", { replace: true });
-      } else {
-        setError("Failed to save project. Please try again.");
-      }
+      setError("Failed to save project. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -100,10 +119,7 @@ export default function ProjectFormModal({
         className="bg-white w-full max-w-lg p-6 rounded-lg shadow-lg animate-scaleIn"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2
-          id="project-modal-title"
-          className="text-xl font-semibold mb-4"
-        >
+        <h2 id="project-modal-title" className="text-xl font-semibold mb-4">
           {project ? "Edit Project" : "New Project"}
         </h2>
 

@@ -1,38 +1,27 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import API from "../services/api";
+import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(null);
-  const [loading, setLoading] = useState(true);
+export function AuthProvider({ children }) {
+  const [token, setToken] = useState(
+    localStorage.getItem("adminToken")
+  );
 
-  useEffect(() => {
-    const savedToken = sessionStorage.getItem("adminToken");
-    if (savedToken) {
-      setToken(savedToken);
-      API.defaults.headers.common["Authorization"] = `Bearer ${savedToken}`;
-    }
-    setLoading(false);
-  }, []);
-
-  const login = (accessToken) => {
-    sessionStorage.setItem("adminToken", accessToken);
-    API.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-    setToken(accessToken);
+  const login = (token) => {
+    localStorage.setItem("adminToken", token);
+    setToken(token);
   };
 
   const logout = () => {
-    sessionStorage.removeItem("adminToken");
-    delete API.defaults.headers.common["Authorization"];
+    localStorage.removeItem("adminToken");
     setToken(null);
   };
 
   return (
-    <AuthContext.Provider value={{ token, login, logout, loading }}>
+    <AuthContext.Provider value={{ token, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
-};
+}
 
 export const useAuth = () => useContext(AuthContext);

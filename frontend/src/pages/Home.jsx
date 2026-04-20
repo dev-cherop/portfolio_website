@@ -45,7 +45,7 @@ export default function Home() {
             Hi, I’m <span className="text-blue-600">CHEROP ELISHA</span>
           </h1>
          <p className="text-lg sm:text-xl text-gray-700">
-            Backend-focused Software Developer with hands-on experience in building scalable web applications, alongside strong expertise in IT support, networking, and hardware systems.
+            Backend Software Developer with hands-on experience in building scalable web applications, alongside strong expertise in IT support, networking, and hardware systems.
            Skilled in Python, Django, FastAPI, React, and CCNAv7-certified networking,
            I develop reliable software solutions while also managing system infrastructure, troubleshooting hardware/software issues, and supporting real-world IT environments.
           </p>

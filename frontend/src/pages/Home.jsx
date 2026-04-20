@@ -44,12 +44,17 @@ export default function Home() {
           <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900">
             Hi, I’m <span className="text-blue-600">CHEROP ELISHA</span>
           </h1>
-          <p className="text-lg sm:text-xl text-gray-700">
-            Resourceful Full-Stack & Systems Engineer specializing in backend and frontend development, IT support, machine learning, and WordPress development. Skilled in Python, Django, Flask, React, FastAPI, WordPress, and CCNAv7-certified networking. I design and build scalable, data-driven systems, deliver production-ready features, and solve complex technical challenges with clean, maintainable software.
+         <p className="text-lg sm:text-xl text-gray-700">
+            Backend-focused Software Developer with hands-on experience in building scalable web applications, alongside strong expertise in IT support, networking, and hardware systems. Skilled in Python, Django, FastAPI, React, and CCNAv7-certified networking, I develop reliable software solutions while also managing system infrastructure, troubleshooting hardware/software issues, and supporting real-world IT environments.
+          </p>
+          <p className="text-md sm:text-lg text-gray-600 font-medium">
+            Software Developer • IT Support Specialist • Network & Systems Enthusiast
           </p>
           <h2 className="text-2xl font-bold text-gray-900 mt-4">About My Work</h2>
-          <p className="text-gray-700">
-            I am passionate about creating scalable, data-driven systems and delivering high-quality, maintainable software. With a dual background in Software Engineering and Network Infrastructure, I approach problems with a systems-level perspective, ensuring robust and efficient solutions across software, WordPress sites, and network systems.
+         <p className="text-gray-700">
+            I combine software engineering with practical IT and network infrastructure experience, allowing me to solve problems from both application and system levels. I build secure, scalable backend systems, develop user-facing applications, and ensure underlying networks and hardware operate efficiently. 
+          
+            Whether it's developing APIs, configuring networks, troubleshooting systems, or maintaining IT environments, I focus on delivering reliable, maintainable, and production-ready solutions.
           </p>
         </div>
       </div>
@@ -68,12 +73,14 @@ export default function Home() {
       <div>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Key Competencies</h2>
         <ul className="list-disc list-inside text-gray-700 space-y-1">
-          <li>Backend Development (Django, Flask, FastAPI)</li>
-          <li>Frontend Implementation (React, Tailwind)</li>
-          <li>Network Infrastructure (Routing & Switching)</li>
-          <li>Machine Learning (TensorFlow, Scikit-learn)</li>
-          <li>DevOps (Docker, Git, Linux CLI)</li>
-        </ul>
+        <li>Backend Development (Django, Flask, FastAPI)</li>
+        <li>Frontend Development (React, Tailwind CSS)</li>
+        <li>IT Support & Troubleshooting (Hardware & Software)</li>
+        <li>Network Configuration (LAN/WAN, Routing & Switching)</li>
+        <li>System Administration (Linux, CLI, Basic Security)</li>
+        <li>Machine Learning (Scikit-learn, TensorFlow - foundational)</li>
+        <li>DevOps & Tools (Docker, Git, Deployment basics)</li>
+      </ul>
       </div>
 
     </section>

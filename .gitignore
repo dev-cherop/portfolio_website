@@ -1,36 +1,78 @@
-# ----------------
-# Python / Django
-# ----------------
+
+# ==============================
+# PYTHON / DJANGO
+# ==============================
 __pycache__/
 *.py[cod]
+*$py.class
+
 *.sqlite3
+*.db
 *.log
+
 env/
 venv/
+ENV/
+.venv/
+
+# Environment variables and secrets
+.env
+.env.*
 *.env
+!.env.example
+
+# Django uploads
 media/
 
-# Django migrations (optional if you want to ignore migrations)
+# Python testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Django migration cache
 */migrations/*.pyc
 */migrations/__pycache__/
 
-# ----------------
-# Node / React / Vite
-# ----------------
+# ==============================
+# NODE / REACT / VITE
+# ==============================
 node_modules/
 dist/
-npm-debug.log*
-yarn-error.log*
+build/
 
-# ----------------
-# IDE / Editor
-# ----------------
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+.vite/
+
+# ==============================
+# IDE / EDITORS
+# ==============================
 .vscode/
 .idea/
 *.swp
+*.swo
 
-# ----------------
-# Mac / Linux / Windows system files
-# ----------------
+# ==============================
+# OPERATING SYSTEM FILES
+# ==============================
 .DS_Store
+.AppleDouble
+.LSOverride
 Thumbs.db
+Desktop.ini
+
+# ==============================
+# ENVIRONMENT / DEPLOYMENT
+# ==============================
+.vercel/
+.netlify/
+
+# ==============================
+# BACKUP FILES
+# ==============================
+*.bak
+*.tmp
+*.old

@@ -1,112 +1,190 @@
-import { Routes, Route, Link, Navigate } from "react-router-dom";
+
+import { useState } from "react";
+import {
+  Routes,
+  Route,
+  Link,
+  NavLink,
+} from "react-router-dom";
+
+import {
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
+
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import Footer from "./components/Footer";
 
+const socialLinks = [
+  {
+    name: "GitHub",
+    href: "https://github.com/dev-cherop",
+    icon: FaGithub,
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/cherop-elisha-8675a0368/",
+    icon: FaLinkedin,
+  },
+  {
+    name: "Email",
+    href: "mailto:cheropelishaa@gmail.com",
+    icon: FaEnvelope,
+  },
+];
 
-import { AuthProvider } from "./context/AuthContext";
-import ProtectedRoute from "./components/ProtectedRoute";
+const navLinks = [
+  { name: "Home", path: "/" },
+  { name: "Projects", path: "/projects" },
+  { name: "Contact", path: "/contact" },
+];
 
-// Admin
-import AdminLogin from "./pages/admin/AdminLogin";
-import AdminDashboard from "./pages/AdminDashboard";
-import ProjectsList from "./pages/admin/ProjectsList";
-import ContactsList from "./pages/admin/ContactsList";
+export default function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-// Icons
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
-
-function App() {
-  const SOCIAL_LINKS = [
-    {
-      name: "GitHub",
-      href: "https://github.com/dev-cherop",
-      icon: FaGithub,
-    },
-    {
-      name: "LinkedIn",
-      href: "https://www.linkedin.com/in/cherop-elisha-8675a0368/",
-      icon: FaLinkedin,
-    },
-    {
-      name: "Email",
-      href: "mailto:cheropelishaa@gmail.com",
-      icon: FaEnvelope,
-    },
-  ];
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <AuthProvider>
-      <div className="flex flex-col min-h-screen font-sans">
+    <div className="min-h-screen flex flex-col bg-slate-950 font-sans">
 
-        {/* Navbar */}
-        <nav className="bg-blue-600 text-white p-4 flex items-center justify-between">
-  
-  {/* Left: Title + Social Icons */}
-  <div className="flex items-center gap-4">
-    <h1 className="font-bold text-xl">My Portfolio</h1>
+      {/* NAVBAR */}
+      <nav className="sticky top-0 z-50 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800">
 
-    <ul className="flex gap-3">
-      {SOCIAL_LINKS.map(({ name, href, icon: Icon }) => (
-        <li key={name}>
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={name}
-            className="text-lg hover:text-gray-200 transition hover:scale-110"
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+          {/* LOGO */}
+          <Link
+            to="/"
+            onClick={closeMenu}
+            className="text-2xl font-extrabold tracking-tight text-white"
           >
-            <Icon />
-          </a>
-        </li>
-      ))}
-    </ul>
-  </div>
+            DEV-CHEROP<span className="text-blue-500">.</span>
+          </Link>
 
-  {/* Right: Navigation Links */}
-  <ul className="flex gap-4">
-    <li><Link to="/">Home</Link></li>
-    <li><Link to="/projects">Projects</Link></li> 
-    <li><Link to="/contact">Contact</Link></li>
-    
-  </ul>
+          {/* DESKTOP NAVIGATION */}
+          <div className="hidden md:flex items-center gap-8">
 
-</nav>
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.path}
+                to={link.path}
+                end={link.path === "/"}
+                className={({ isActive }) =>
+                  `text-sm font-medium transition ${
+                    isActive
+                      ? "text-blue-400"
+                      : "text-slate-400 hover:text-white"
+                  }`
+                }
+              >
+                {link.name}
+              </NavLink>
+            ))}
 
+          </div>
 
-        {/* Main */}
-        <main className="flex-grow p-8">
-          <Routes>
-            {/* Public */}
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/admin/login" element={<AdminLogin />} />
+          {/* SOCIAL LINKS */}
+          <div className="hidden md:flex items-center gap-5">
 
-            {/* Protected Admin Routes */}
-            <Route
-              path="/admin"
-              element={
-                <ProtectedRoute>
-                  <AdminDashboard />
-                </ProtectedRoute>
-              }
-            >
-              <Route index element={<Navigate to="projects" replace />} />
-              <Route path="projects" element={<ProjectsList />} />
-              <Route path="contacts" element={<ContactsList />} />
-            </Route>
+            {socialLinks.map(({ name, href, icon: Icon }) => (
+              <a
+                key={name}
+                href={href}
+                target={name === "Email" ? undefined : "_blank"}
+                rel={name === "Email" ? undefined : "noopener noreferrer"}
+                aria-label={name}
+                className="text-slate-400 hover:text-blue-400 transition text-lg"
+              >
+                <Icon />
+              </a>
+            ))}
 
-            {/* Catch-all */}
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </main>
+          </div>
 
-        <Footer />
-      </div>
-    </AuthProvider>
+          {/* MOBILE MENU BUTTON */}
+          <button
+            type="button"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
+            className="md:hidden text-white text-2xl p-2"
+          >
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+
+        </div>
+
+        {/* MOBILE NAVIGATION */}
+        {menuOpen && (
+          <div
+            id="mobile-navigation"
+            className="md:hidden border-t border-slate-800 bg-slate-950 px-6 py-6"
+          >
+
+            <div className="flex flex-col gap-5">
+
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.path}
+                  to={link.path}
+                  end={link.path === "/"}
+                  onClick={closeMenu}
+                  className={({ isActive }) =>
+                    `text-base font-medium transition ${
+                      isActive
+                        ? "text-blue-400"
+                        : "text-slate-300 hover:text-blue-400"
+                    }`
+                  }
+                >
+                  {link.name}
+                </NavLink>
+              ))}
+
+            </div>
+
+            <div className="flex items-center gap-6 mt-8 pt-6 border-t border-slate-800">
+
+              {socialLinks.map(({ name, href, icon: Icon }) => (
+                <a
+                  key={name}
+                  href={href}
+                  target={name === "Email" ? undefined : "_blank"}
+                  rel={name === "Email" ? undefined : "noopener noreferrer"}
+                  aria-label={name}
+                  className="text-slate-400 hover:text-blue-400 text-xl transition"
+                >
+                  <Icon />
+                </a>
+              ))}
+
+            </div>
+
+          </div>
+        )}
+
+      </nav>
+
+      {/* PAGE CONTENT */}
+      <main className="flex-grow">
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+
+      </main>
+
+      <Footer />
+
+    </div>
   );
 }
-
-export default App;
